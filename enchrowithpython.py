@@ -65,8 +65,9 @@ class EncDecApp(App):
 
     def show_file_chooser(self, instance):
         if platform == 'android':
-            # File selection on Android is not yet supported as of 1.0.0
-            self.show_popup("File Selection", "File selection on Android is not yet supported.")
+            # On Android, a different file selection mechanism is needed.
+            # This is a placeholder.
+            self.show_popup("File Selection", "File selection on Android requires a platform-specific implementation.")
             return
 
         content = FileChooserListView(path=os.path.expanduser('~'))
@@ -96,7 +97,12 @@ class EncDecApp(App):
             return
 
         salt_str = self.salt_input.text
-        salt = base64.b64decode(salt_str) if salt_str else base64.b64decode("3eAToCvaGxCi9e6dWr1G7g==")
+        if salt_str:
+            # Use the provided salt string directly, encoded to bytes
+            salt = salt_str.encode('utf-8')
+        else:
+            # Use the default salt if none is provided
+            salt = base64.b64decode("3eAToCvaGxCi9e6dWr1G7g==")
 
         key = self.get_key(password, salt)
 
@@ -107,7 +113,11 @@ class EncDecApp(App):
             cipher = AES.new(key, AES.MODE_GCM)
             ciphertext, tag = cipher.encrypt_and_digest(data)
 
+            # When encrypting, we need to store the salt that was used.
+            # We'll prepend it to the file.
             with open(self.selected_file + '.enc', 'wb') as f_out:
+                # We write the salt's length first, so we know how much to read during decryption
+                f_out.write(len(salt).to_bytes(2, 'big')) 
                 f_out.write(salt)
                 f_out.write(cipher.nonce)
                 f_out.write(tag)
@@ -130,7 +140,11 @@ class EncDecApp(App):
 
         try:
             with open(self.selected_file, 'rb') as f_in:
-                salt = f_in.read(16)
+                # Read the salt length (2 bytes)
+                salt_len = int.from_bytes(f_in.read(2), 'big')
+                # Read the salt
+                salt = f_in.read(salt_len)
+                # Read the rest of the data
                 nonce = f_in.read(16)
                 tag = f_in.read(16)
                 ciphertext = f_in.read()
