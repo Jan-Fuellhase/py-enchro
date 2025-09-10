@@ -23,11 +23,8 @@ Make sure you have Python 3 installed on your system.
 
 #### Running the App
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <your-repo-url>
-    cd enchrowithpython
-    ```
+1.  **Clone the repository**
+
 
 2.  **Install dependencies:**
     ```bash
@@ -64,4 +61,5 @@ The application uses the `pycryptodome` library to perform AES-256 encryption.
 
 *   A 256-bit key is derived from your password and a salt using PBKDF2.
 *   The encrypted file (`.enc`) contains the salt, nonce, GCM tag, and the ciphertext, which are all required for decryption.
+
 
