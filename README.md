@@ -63,5 +63,5 @@ To package the application for Android, use [Buildozer](https://buildozer.readth
 The application uses the `pycryptodome` library to perform AES-256 encryption.
 
 *   A 256-bit key is derived from your password and a salt using PBKDF2.
-*   If you don't provide a salt, a default salt (`3eAToCvaGxCi9e6dWr1G7g==`) is used.
 *   The encrypted file (`.enc`) contains the salt, nonce, GCM tag, and the ciphertext, which are all required for decryption.
+
