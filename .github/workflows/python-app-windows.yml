@@ -36,14 +36,6 @@ jobs:
           # Kivy Windows runtime deps so the exe runs on PCs without Python/OpenGL
           pip install kivy-deps.sdl2 kivy-deps.angle kivy-deps.glew
 
-      - name: Verify Kivy
-        run: |
-          python - << 'PY'
-          import kivy, os
-          print("Kivy:", kivy.__version__)
-          print("KIVY_GL_BACKEND:", os.environ.get("KIVY_GL_BACKEND"))
-          PY
-
       - name: Build with PyInstaller (spec preferred)
         run: |
           if (Test-Path enchrowithpython.spec) {
