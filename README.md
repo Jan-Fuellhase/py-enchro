@@ -15,6 +15,16 @@ A simple, cross-platform tool for AES-256 file encryption. Built with Python and
 
 ---
 
+### ► Download
+
+Download the latest pre-built executable:
+
+**Windows:** [Download py-enchro.exe](https://github.com/Jan-Fuellhase/py-enchro/raw/refs/heads/main/release/py-enchro.exe)
+
+*No installation required - just download and run!*
+
+---
+
 ### ► Getting Started
 
 #### Prerequisites
