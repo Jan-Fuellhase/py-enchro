@@ -50,21 +50,3 @@ jobs:
         with:
           name: py-enchro-windows
           path: dist/enchrowithpython.exe
-
-      - name: Build with PyInstaller (spec preferred)
-        run: |
-          if (Test-Path enchrowithpython.spec) {
-            pyinstaller enchrowithpython.spec
-          } else {
-            # fallback if you don’t use a spec file yet
-            pyinstaller --name enchrowithpython --windowed --onefile enchrowithpython.py
-          }
-
-      - name: List dist
-        run: dir dist
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: py-enchro-windows
-          path: dist/enchrowithpython.exe
