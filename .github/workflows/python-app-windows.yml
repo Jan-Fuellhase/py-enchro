@@ -2,9 +2,9 @@ name: Build Windows EXE (PyInstaller)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "1-build-windows-exe-pyinstaller" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "1-build-windows-exe-pyinstaller" ]
   workflow_dispatch:
 
 permissions:
