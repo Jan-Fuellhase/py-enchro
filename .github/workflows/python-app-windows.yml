@@ -36,6 +36,21 @@ jobs:
           # Kivy Windows runtime deps so the exe runs on PCs without Python/OpenGL
           pip install kivy-deps.sdl2 kivy-deps.angle kivy-deps.glew
 
+      - name: Build with PyInstaller using spec file
+        run: |
+          pyinstaller enchrowithpython.spec
+
+      - name: List dist contents
+        run: |
+          dir dist
+          Get-ChildItem -Path dist -Recurse
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: py-enchro-windows
+          path: dist/enchrowithpython.exe
+
       - name: Build with PyInstaller (spec preferred)
         run: |
           if (Test-Path enchrowithpython.spec) {
