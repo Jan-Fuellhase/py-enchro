@@ -33,6 +33,8 @@ jobs:
           pip install pyinstaller
           # Your app deps
           if (Test-Path requirements.txt) { pip install -r requirements.txt }
+          # Windows-specific dependencies for file operations
+          pip install pywin32
           # Kivy Windows runtime deps so the exe runs on PCs without Python/OpenGL
           pip install kivy-deps.sdl2 kivy-deps.angle kivy-deps.glew
 

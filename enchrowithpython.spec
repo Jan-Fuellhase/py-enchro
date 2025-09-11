@@ -10,7 +10,17 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=[],
+    hiddenimports=[
+        'win32timezone',
+        'win32api',
+        'win32con',
+        'pywintypes',
+        'pkg_resources.extern',
+        'pkg_resources.py2_warn',
+        'kivy.deps.sdl2',
+        'kivy.deps.glew',
+        'kivy.deps.angle'
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
